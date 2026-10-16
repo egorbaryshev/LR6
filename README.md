@@ -88,7 +88,7 @@ Merge-коммит и удаление локальной branch1.
 
 ### Рисунок 10
 
-Проверка отправки master и report на GitHub и удаление объединённой удалённой ветки branch1.
+Проверка отправки master и report на GitHub.
 
 ![Проверка синхронизации](screenshots/10-push.png)
 
