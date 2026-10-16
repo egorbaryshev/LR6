@@ -24,7 +24,7 @@
 
 ## Ветка отчёта
 
-Для отчёта создана отдельная ветка `codex/report`. Отчёт оформляется в Markdown; снимки экрана размещаются в папке `screenshots`.
+Для отчёта создана отдельная ветка `report`. Отчёт оформляется в Markdown; снимки экрана размещаются в папке `screenshots`.
 
 ## Проверка через GitHub API
 
@@ -88,7 +88,7 @@ Merge-коммит и удаление локальной branch1.
 
 ### Рисунок 10
 
-Проверка отправки master и codex/report на GitHub и удаление объединённой удалённой ветки branch1.
+Проверка отправки master и report на GitHub и удаление объединённой удалённой ветки branch1.
 
 ![Проверка синхронизации](screenshots/10-push.png)
 
@@ -134,21 +134,21 @@ git revert --no-edit HEAD
 cat practice.txt
 git log -4 --oneline
 git diff HEAD~2 HEAD -- practice.txt
-git switch -c codex/report
+git switch -c report
 git add README.md
 git commit -m 'Оформлены цель и основные этапы отчёта в README'
 git show --remerge-diff 0417164 -- mergefile.txt
 gh api repos/egorbaryshev/LR6 --jq '{name: .full_name, fork: .fork, parent: .parent.full_name, default_branch: .default_branch}'
 git add README.md commands.log screenshots
 git commit -m 'Добавлены снимки экрана и журнал команд в отчёт'
-git push -u origin master codex/report
+git push -u origin master report
 git push origin --delete branch1
 git status -sb
 git ls-remote --heads origin
 git log --all --format='%h | %ad | %an | %s' --date=short
 git add README.md commands.log history.txt screenshots/10-push.png
 git commit -m 'Завершён отчёт и добавлена форматированная история'
-git push origin codex/report
+git push origin report
 ```
 
 ## Форматированная история
@@ -172,9 +172,9 @@ c08a654 | 2020-11-21 | Kurtyanik | Файл создан пустым
 
 ## Результат
 
-Ветка master содержит выполненные операции слияния и отмены коммита. Ветка codex/report содержит отчёт, журнал команд, историю и папку снимков экрана. Обе ветки отправлены на GitHub. После слияния branch1 удалена локально и на сервере.
+Ветка master содержит выполненные операции слияния и отмены коммита. Ветка report содержит отчёт, журнал команд, историю и папку снимков экрана. Обе ветки отправлены на GitHub. После слияния branch1 удалена локально и на сервере.
 
-Ссылка на отчёт: https://github.com/egorbaryshev/LR6/tree/codex/report
+Ссылка на отчёт: https://github.com/egorbaryshev/LR6/tree/report
 
 ## Вывод
 
