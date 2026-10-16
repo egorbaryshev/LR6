@@ -1,0 +1,42 @@
+git --version
+git clone https://github.com/egorbaryshev/LR6.git LR6
+cd LR6
+git config user.name '4514 Барышев Е.А.'
+git config user.email '236220131+egorbaryshev@users.noreply.github.com'
+git config core.quotePath false
+git config --get user.name
+git config --get user.email
+git remote -v
+git branch -a
+git pull --ff-only origin master
+cat web-note.txt
+git branch --track branch1 origin/branch1
+git log master --oneline
+git log branch1 --oneline
+git show master --stat
+git diff master...branch1 -- mergefile.txt
+git merge branch1
+git status --short
+cat mergefile.txt
+git add mergefile.txt
+git commit -m 'Слияние branch1 в master с ручным разрешением конфликта'
+git branch -d branch1
+git log --graph --oneline --all
+printf 'Лабораторная работа №6\nИзучены история и слияние веток.\n' > practice.txt
+git add practice.txt
+git commit -m 'Добавлены заметки о выполнении лабораторной'
+printf 'Конфликт в mergefile.txt разрешён вручную.\n' >> practice.txt
+git add practice.txt
+git commit -m 'Дополнены заметки о разрешении конфликта'
+printf 'Временная строка для демонстрации отмены коммита.\n' >> practice.txt
+git add practice.txt
+git commit -m 'Добавлена временная строка для демонстрации отката'
+git revert --no-edit HEAD
+cat practice.txt
+git log -4 --oneline
+git diff HEAD~2 HEAD -- practice.txt
+git switch -c codex/report
+git add README.md
+git commit -m 'Оформлены цель и основные этапы отчёта в README'
+git show --remerge-diff 0417164 -- mergefile.txt
+gh api repos/egorbaryshev/LR6 --jq '{name: .full_name, fork: .fork, parent: .parent.full_name, default_branch: .default_branch}'

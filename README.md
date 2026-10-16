@@ -25,3 +25,112 @@
 ## Ветка отчёта
 
 Для отчёта создана отдельная ветка `codex/report`. Отчёт оформляется в Markdown; снимки экрана размещаются в папке `screenshots`.
+
+## Проверка через GitHub API
+
+Команда `gh api repos/egorbaryshev/LR6` вернула `fork: true`, имя `egorbaryshev/LR6` и родительский репозиторий `Kurtyanik/LR6`. Это подтверждает создание личного fork.
+
+## Снимки экрана
+
+### Рисунок 1
+
+Личный fork с двумя ветками.
+
+![Личный fork с двумя ветками](screenshots/01-fork.png)
+
+### Рисунок 2
+
+Файл web-note.txt добавлен через сайт.
+
+![Файл web-note.txt добавлен через сайт](screenshots/02-web-file.png)
+
+### Рисунок 3
+
+Версия Git и локальные настройки автора.
+
+![Версия Git и локальные настройки автора](screenshots/03-config.png)
+
+### Рисунок 4
+
+Проверка полученного веб-файла.
+
+![Проверка полученного веб-файла](screenshots/04-pull.png)
+
+### Рисунок 5
+
+История обеих веток и последний веб-коммит.
+
+![История обеих веток и последний веб-коммит](screenshots/05-history.png)
+
+### Рисунок 6
+
+Конфликт и ручное разрешение в выводе git show --remerge-diff.
+
+![Конфликт и ручное разрешение в выводе git show --remerge-diff](screenshots/06-conflict.png)
+
+### Рисунок 7
+
+Merge-коммит и удаление локальной branch1.
+
+![Merge-коммит и удаление локальной branch1](screenshots/07-merge.png)
+
+### Рисунок 8
+
+Три коммита и отмена последнего через git revert.
+
+![Три коммита и отмена последнего через git revert](screenshots/08-revert.png)
+
+### Рисунок 9
+
+Ветка отчёта, форматированная история и GitHub API.
+
+![Ветка отчёта, форматированная история и GitHub API](screenshots/09-report-api.png)
+
+## Лог команд
+
+Команды приведены без результатов выполнения. Редактирование mergefile.txt и README.md выполнялось отдельно от Git-команд.
+
+```sh
+git --version
+git clone https://github.com/egorbaryshev/LR6.git LR6
+cd LR6
+git config user.name '4514 Барышев Е.А.'
+git config user.email '236220131+egorbaryshev@users.noreply.github.com'
+git config core.quotePath false
+git config --get user.name
+git config --get user.email
+git remote -v
+git branch -a
+git pull --ff-only origin master
+cat web-note.txt
+git branch --track branch1 origin/branch1
+git log master --oneline
+git log branch1 --oneline
+git show master --stat
+git diff master...branch1 -- mergefile.txt
+git merge branch1
+git status --short
+cat mergefile.txt
+git add mergefile.txt
+git commit -m 'Слияние branch1 в master с ручным разрешением конфликта'
+git branch -d branch1
+git log --graph --oneline --all
+printf 'Лабораторная работа №6\nИзучены история и слияние веток.\n' > practice.txt
+git add practice.txt
+git commit -m 'Добавлены заметки о выполнении лабораторной'
+printf 'Конфликт в mergefile.txt разрешён вручную.\n' >> practice.txt
+git add practice.txt
+git commit -m 'Дополнены заметки о разрешении конфликта'
+printf 'Временная строка для демонстрации отмены коммита.\n' >> practice.txt
+git add practice.txt
+git commit -m 'Добавлена временная строка для демонстрации отката'
+git revert --no-edit HEAD
+cat practice.txt
+git log -4 --oneline
+git diff HEAD~2 HEAD -- practice.txt
+git switch -c codex/report
+git add README.md
+git commit -m 'Оформлены цель и основные этапы отчёта в README'
+git show --remerge-diff 0417164 -- mergefile.txt
+gh api repos/egorbaryshev/LR6 --jq '{name: .full_name, fork: .fork, parent: .parent.full_name, default_branch: .default_branch}'
+```
