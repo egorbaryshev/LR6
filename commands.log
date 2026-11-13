@@ -50,3 +50,8 @@ git log --all --format='%h | %ad | %an | %s' --date=short
 git add README.md commands.log history.txt screenshots/10-push.png
 git commit -m 'Завершён отчёт и добавлена форматированная история'
 git push origin report
+
+git log --all --format='%h | %ad | %an | %s' --date=short
+git add README.md commands.log history.txt
+git commit -m 'Уточнён итоговый отчёт и обновлён снимок истории'
+git push origin report
